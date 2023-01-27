@@ -1,5 +1,5 @@
 # BookListApp
-1st Flutter Project
+1st Flutter Toy Project
 * based on the book "쉽고 빠른 플러터 앱 개발"
 
 1. 화면

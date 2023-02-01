@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_book_list/screens/list_screen.dart';
+import 'package:flutter_book_list/screens/detailed_screen.dart';
+
 import 'dart:ui';
 
 void main() => runApp(MyApp());
@@ -11,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Book List App',
-      home: ListScreen(), //홈을 ListScreen으로 설정
+      home: DetailedScreen(), //홈을 ListScreen으로 설정
       );
   }
 }

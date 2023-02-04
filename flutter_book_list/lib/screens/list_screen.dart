@@ -1,58 +1,50 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
+import 'package:flutter_book_list/repositories/book_repo.dart';
+import 'package:flutter_book_list/screens/detailed_screen.dart';
+import 'package:flutter_book_list/models/book.dart';
 
 class ListScreen extends StatelessWidget{
-  const ListScreen({super.key});
+  final List<Book> boos = BookRepo().getBooks();
   @override
   Widget build(BuildContext context) {
+    var books;
     return Scaffold(
       appBar: AppBar(
         title: const Text("도서목록앱"),
       ),
-      body: ListView(
-        children: [
-          ListTile(
-            title: const Text('패키지없이 r로 구현하는'),
-            leading: Image.network("https://images.unsplash.com/photo-1653376332215-7277dae6c6b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80"),
-          ),
-          ListTile(
-            title: const Text('패키지없이 r로 구현하는'),
-            leading: Image.network("https://images.unsplash.com/photo-1653376332215-7277dae6c6b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80"),
-          ),
-          ListTile(
-            title: const Text('패키지없이 r로 구현하는'),
-            leading: Image.network("https://images.unsplash.com/photo-1653376332215-7277dae6c6b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80"),
-          ),
-          ListTile(
-            title: const Text('패키지없이 r로 구현하는'),
-            leading: Image.network("https://images.unsplash.com/photo-1653376332215-7277dae6c6b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80"),
-          ),
-
-          BookTile(title: "tite", subtitle: "subtitle", description: "description", image: "image"),
-        ],
-      ),
+      body: ListView.builder(
+        itemCount: books.length,
+        itemBuilder: (context, index){
+          return BookTile(book: books[index]);
+        }
+      )
+      
     );
   }
 }
 
 class BookTile extends StatelessWidget{
-  final String title;
-  final String subtitle;
-  final String description;
-  final String image;
+
+  final Book book;
 
   BookTile({
-    required this.title,
-    required this.subtitle,
-    required this.description,
-    required this.image,
+    required this.book
   });
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(title),
-      leading: Image.network(image),
-      onTap:(){});
+      title: Text(book.title),
+      leading: Image.network(book.image),
+      onTap:(){
+        //화면이동 코드
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => DetailedScreen(
+            //detailed screen에 아래의 변수 전달
+            book: book,
+          ),)
+        );
+      });
   }
 }

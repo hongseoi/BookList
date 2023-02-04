@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Book List App',
-      home: DetailedScreen(), //홈을 ListScreen으로 설정
+      home: ListScreen(), //홈을 ListScreen으로 설정
       );
   }
 }
